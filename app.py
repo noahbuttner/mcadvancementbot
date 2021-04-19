@@ -156,11 +156,11 @@ def overall_commands(current_advancements):
 		", ".join(completed_advancements))
 	left_message = "The following advancements have not been completed: {}".format(
 		", ".join(left_advancements))
-	if completed_message > 500:
+	if len(completed_message) > 500:
 		completed_message = completed_message[0:496] + "..."
-	if left_message > 500:
+	if len(left_message) > 500:
 		left_message = left_message[0:496] + "..."
-	print(send_request("https://api.nightbot.tv/1/commands/" + all_commands["!left"]['_id'],method="PUT", token=token, args={'message': left_message}))
+	send_request("https://api.nightbot.tv/1/commands/" + all_commands["!left"]['_id'],method="PUT", token=token, args={'message': left_message})
 	send_request("https://api.nightbot.tv/1/commands/" + all_commands["!completed"]['_id'],method="PUT", token=token, args={'message': completed_message})
 
 def update_commands(different_advancements, current_advancements):
