@@ -1,0 +1,6 @@
+mcpath:
+client_id:
+client_secret:
+code:
+token:
+refresh_token:
