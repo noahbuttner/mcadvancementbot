@@ -14,8 +14,8 @@ import tkinter as tk
 class Application(tk.Frame):
 	def __init__(self, master=None):
 		super().__init__(master)
-		
-		self.settings = json.loads(open(os.path.join(sys._MEIPASS,"settings.json"), "r").read())
+
+		self.settings = json.loads(open("settings.json", "r").read())
 		self.mcpath = self.settings['mcpath']
 		print(self.mcpath)
 		self.client_id = self.settings['client_id']
@@ -46,7 +46,7 @@ class Application(tk.Frame):
 		self.p3.pack()
 		self.create_settings()
 		self.create_buttons()
-		csvfile = open(os.path.join(sys._MEIPASS,"data.csv"),"r")
+		csvfile = open("data.csv","r")
 		reader = csv.reader(csvfile)
 		self.translator = {}
 		self.names = []
@@ -57,14 +57,14 @@ class Application(tk.Frame):
 				'done': False,}})
 		self.replaced_commands = {command.replace(" ", "").lower(): command for command in self.names}
 		self.all_commands = self.get_all_commands()
-
+ 
 	def link_it(self, url):
 		webbrowser.open_new(url)
-
+ 
 	def submit_code_entry(self):
 		print(self.code_entry.get())
 		self.code = self.code_entry.get()
-
+ 
 	def create_settings(self):
 		self.l1 = tk.Label(self.settings_frame, text="client_id")
 		self.l1.grid(row=1, column=1)
@@ -94,9 +94,9 @@ class Application(tk.Frame):
 		self.e4.grid(row=4, column=2)
 		self.b4 = tk.Button(self.settings_frame, text="Submit", command=self.submit_settings)
 		self.b4.grid(row=4, column=3)
-
+ 
 	def submit_settings(self):
-			
+ 
 		self.client_id = self.e1.get()
 		self.client_secret =self.e2.get()
 		self.code = self.e3.get()
@@ -107,9 +107,9 @@ class Application(tk.Frame):
 			'code': self.code,
 			'mcpath': self.mcpath,
 			})
-		with open(os.path.join(sys._MEIPASS,"settings.json"), "w") as settings_file:
+		with open("settings.json", "w") as settings_file:
 			settings_file.write(str(json.dumps(self.settings,indent=4,sort_keys=True)))
-
+ 
 	def create_buttons(self):
 		self.get_token_button = tk.Button(self.frame, text="Get Token",
 			padx=10, pady=5, fg="blue", command=self.get_token)
@@ -125,7 +125,11 @@ class Application(tk.Frame):
 			text="Start",
 			padx=10, pady=5, fg="blue", command=self.main)
 		self.start_button.pack(side=tk.BOTTOM)
-	
+		self.ac_button = tk.Button(self.frame,
+			text="Get All Commands",
+			padx=10, pady=5, fg="blue", command=self.get_all_commands)
+		self.ac_button.pack(side=tk.BOTTOM)
+ 
 	def get_token(self):
 		r = requests.post("https://api.nightbot.tv/oauth2/token", data={
 			"client_id": self.client_id,
@@ -145,7 +149,7 @@ class Application(tk.Frame):
 			self.settings.update({'token': self.token})
 			with open(os.path.join(sys._MEIPASS,"settings.json"), "w") as settings_file:
 				settings_file.write(str(json.dumps(self.settings,indent=4,sort_keys=True)))
-
+ 
 	def set_all_commands(self):
 		commands = self.names
 		for command in commands:
@@ -165,7 +169,7 @@ class Application(tk.Frame):
 			'message': "No advancements have been completed",
 			'name': "!left"})
 		self.send_request("https://api.nightbot.tv/1/commands", args=args)
-
+ 
 	def send_request(self, url, args=None, method="POST"):
 		headers = {"Authorization": "Bearer " + self.token}
 		if method == "POST":
@@ -178,27 +182,29 @@ class Application(tk.Frame):
 			r = requests.put(url, data=args, headers=headers)
 		print(r.text)
 		return r.json()
-
+ 
 	def get_all_commands(self):
 		commands = self.send_request("https://api.nightbot.tv/1/commands", method="GET")
 		factored_commands = {}
-		for command in commands['commands']:
-			if self.replaced_commands.get(command['name']):
-				factored_commands.update({self.replaced_commands[command['name']]: command})
-			elif command['name'] == "!left":
-				factored_commands.update({'!left': command})
-			elif command['name'] == "!completed":
-				factored_commands.update({'!completed': command})
+		if commands.get('commands'):
+                        for command in commands['commands']:
+                                if self.replaced_commands.get(command['name']):
+                                        factored_commands.update({self.replaced_commands[command['name']]: command})
+                                elif command['name'] == "!left":
+                                        factored_commands.update({'!left': command})
+                                elif command['name'] == "!completed":
+                                        factored_commands.update({'!completed': command})
+		self.all_commands = factored_commands
 		return factored_commands
-
+ 
 	def get_raw_commands(self):
 		return self.send_request("https://api.nightbot.tv/1/commands", method="GET")
-
+ 
 	def delete_all_commands(self):
 		for command in self.all_commands['commands']:
 			self.send_request("https://api.nightbot.tv/1/commands/" + command['_id'], method="Delete")
-
-
+ 
+ 
 	def individual_commands(self, different_advancements):
 		for path, advancement_info in different_advancements.items():
 			if advancement_info['done']:
@@ -210,7 +216,7 @@ class Application(tk.Frame):
 			}
 			if message != self.all_commands[advancement_info['name']]['message']:
 				self.send_request("https://api.nightbot.tv/1/commands/" + self.all_commands[advancement_info['name']]['_id'],method="PUT", args=args)
-
+ 
 	def overall_commands(self, current_advancements):
 		completed_advancements = []
 		left_advancements = []
@@ -229,36 +235,36 @@ class Application(tk.Frame):
 			left_message = left_message[0:496] + "..."
 		self.send_request("https://api.nightbot.tv/1/commands/" + self.all_commands["!left"]['_id'],method="PUT", args={'message': left_message})
 		self.send_request("https://api.nightbot.tv/1/commands/" + self.all_commands["!completed"]['_id'],method="PUT", args={'message': completed_message})
-
+ 
 	def update_commands(self, different_advancements, current_advancements):
 		self.individual_commands(different_advancements)
 		self.overall_commands(current_advancements)
-
+ 
 	def make_backup(self):
 		cmds = self.get_raw_commands()
-		with open(os.path.join(sys._MEIPASS, datetime.datetime.now().strftime("%S") + ".json"), "x") as backup_file:
+		with open(os.path.join("backups",datetime.datetime.now().strftime("%S") + ".json"), "x") as backup_file:
 			backup_file.write(str(json.dumps(cmds,indent=4,sort_keys=True)))
-
+ 
 	def get_latest_world(self):
 		worlds = os.listdir(self.mcpath)
 		for world in worlds:
 			if world[0] == ".":
 				worlds.remove(world)
-		times = {os.path.getctime(os.path.join([self.mcpath,world])): world for world in worlds}
+		times = {os.path.getctime(os.path.join(self.mcpath,world)): world for world in worlds}
 		latest_file = times[max(times)]
 		return latest_file
-
+ 
 	def get_advancement_file(self):
 		latest_file = self.get_latest_world()
-		world_path = os.path.join((self.mcpath,latest_file))
-		advancement_path = os.path.join((world_path, "advancements"))
+		world_path = os.path.join(self.mcpath,latest_file)
+		advancement_path = os.path.join(world_path, "advancements")
 		if "advancements" in os.listdir(world_path):
 			advancement_file = os.listdir(advancement_path)[0]
 		else:
 			return None
 		advancement_file_path = os.path.join(advancement_path, advancement_file)
 		return open(os.path.join(advancement_file_path),"r").read()
-
+ 
 	def get_advancements(self):
 		advancements = self.get_advancement_file()
 		if not advancements:
@@ -294,7 +300,7 @@ class Application(tk.Frame):
 			if diff:
 				current_advancements = all_diff[1]
 				self.update_commands(diff, current_advancements)
-
+ 
 root = tk.Tk()
 app = Application(master=root)
 app.mainloop()
