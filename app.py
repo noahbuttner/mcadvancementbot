@@ -29,9 +29,9 @@ class Application(tk.Frame):
 		self.canvas = tk.Canvas(self, height=700, width=700, bg=self.bgrnd)
 		self.canvas.pack()
 		self.frame = tk.Frame(self, bg="white")
-		self.frame.place(relwidth=0.8, relheight=0.8, relx=0.1, rely=0.1)
+		self.frame.place(relwidth=1, relheight=1)
 		fontStyle = tkFont.Font(family="Lucida Grande", size=20)
-		self.settings_frame = tk.Frame(self.frame,bg="red")
+		self.settings_frame = tk.Frame(self.frame)
 		self.settings_frame.pack(side=tk.BOTTOM)
 		self.instuctions = tk.Label(self.frame, text="Instructions", font=fontStyle)
 		self.instuctions.pack()
@@ -46,15 +46,12 @@ class Application(tk.Frame):
 		self.p3.pack()
 		self.create_settings()
 		self.create_buttons()
-		csvfile = open("data.csv","r")
-		reader = csv.reader(csvfile)
-		self.translator = {}
-		self.names = []
-		for row in reader:
-			self.names.append(row[1])
-			self.translator.update({row[0]: {
-				'name': row[1],
-				'done': False,}})
+		with open("data.json", "r") as data_file:
+			d = data_file.read()
+			self.translator = json.loads(d)
+			self.names = [y['name'] for x, y in json.loads(d).items()]
+		print(json.dumps(self.translator,indent=4,sort_keys=True))
+		print(json.dumps(self.names,indent=4,sort_keys=True))
 		self.replaced_commands = {command.replace(" ", "").lower(): command for command in self.names}
 		self.all_commands = self.get_all_commands()
  

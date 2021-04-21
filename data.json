@@ -1,0 +1,322 @@
+{
+    "minecraft:adventure/adventuring_time": {
+        "done": false,
+        "name": "Adventuring Time"
+    },
+    "minecraft:adventure/arbalistic": {
+        "done": false,
+        "name": "Arbalistic"
+    },
+    "minecraft:adventure/bullseye": {
+        "done": false,
+        "name": "Bullseye"
+    },
+    "minecraft:adventure/hero_of_the_village": {
+        "done": false,
+        "name": "Hero of the Village"
+    },
+    "minecraft:adventure/honey_block_slide": {
+        "done": false,
+        "name": "Sticky Situation"
+    },
+    "minecraft:adventure/kill_a_mob": {
+        "done": false,
+        "name": "Monster Hunter"
+    },
+    "minecraft:adventure/kill_all_mobs": {
+        "done": false,
+        "name": "Monsters Hunted"
+    },
+    "minecraft:adventure/ol_betsy": {
+        "done": false,
+        "name": "Ol' Betsy"
+    },
+    "minecraft:adventure/root": {
+        "done": false,
+        "name": "Adventure"
+    },
+    "minecraft:adventure/shoot_arrow": {
+        "done": false,
+        "name": "Take Aim"
+    },
+    "minecraft:adventure/sleep_in_bed": {
+        "done": false,
+        "name": "Sweet Dreams"
+    },
+    "minecraft:adventure/sniper_duel": {
+        "done": false,
+        "name": "Sniper Duel"
+    },
+    "minecraft:adventure/summon_iron_golem": {
+        "done": false,
+        "name": "Hired Help"
+    },
+    "minecraft:adventure/throw_trident": {
+        "done": false,
+        "name": "A Throwaway Joke"
+    },
+    "minecraft:adventure/totem_of_undying": {
+        "done": false,
+        "name": "Postmortal"
+    },
+    "minecraft:adventure/trade": {
+        "done": false,
+        "name": "What a Deal!"
+    },
+    "minecraft:adventure/two_birds_one_arrow": {
+        "done": false,
+        "name": "Two Birds"
+    },
+    "minecraft:adventure/very_very_frightening": {
+        "done": false,
+        "name": "Very Very Frightening"
+    },
+    "minecraft:adventure/voluntary_exile": {
+        "done": false,
+        "name": "Voluntary Exile"
+    },
+    "minecraft:adventure/whos_the_pillager_now": {
+        "done": false,
+        "name": "Who's the Pillager Now?"
+    },
+    "minecraft:end/dragon_breath": {
+        "done": false,
+        "name": "You Need a Mint"
+    },
+    "minecraft:end/dragon_egg": {
+        "done": false,
+        "name": "The Next Generation"
+    },
+    "minecraft:end/elytra": {
+        "done": false,
+        "name": "Sky's the Limit"
+    },
+    "minecraft:end/enter_end_gateway": {
+        "done": false,
+        "name": "Remote Getaway"
+    },
+    "minecraft:end/find_end_city": {
+        "done": false,
+        "name": "City at the End of the Game"
+    },
+    "minecraft:end/kill_dragon": {
+        "done": false,
+        "name": "Free the End"
+    },
+    "minecraft:end/levitate": {
+        "done": false,
+        "name": "Great View From Up Here"
+    },
+    "minecraft:end/respawn_dragon": {
+        "done": false,
+        "name": "The End... Again..."
+    },
+    "minecraft:end/root": {
+        "done": false,
+        "name": "The End"
+    },
+    "minecraft:husbandry/balanced_diet": {
+        "done": false,
+        "name": "A Balanced Diet"
+    },
+    "minecraft:husbandry/bred_all_animals": {
+        "done": false,
+        "name": "Two by Two"
+    },
+    "minecraft:husbandry/breed_an_animal": {
+        "done": false,
+        "name": "The Parrots and the Bats"
+    },
+    "minecraft:husbandry/complete_catalogue": {
+        "done": false,
+        "name": "A Complete Catalogue"
+    },
+    "minecraft:husbandry/fishy_business": {
+        "done": false,
+        "name": "Fishy Business"
+    },
+    "minecraft:husbandry/obtain_netherite_hoe": {
+        "done": false,
+        "name": "Serious Dedication"
+    },
+    "minecraft:husbandry/plant_seed": {
+        "done": false,
+        "name": "A Seedy Place"
+    },
+    "minecraft:husbandry/root": {
+        "done": false,
+        "name": "Husbandry"
+    },
+    "minecraft:husbandry/safely_harvest_honey": {
+        "done": false,
+        "name": "Bee Our Guest"
+    },
+    "minecraft:husbandry/silk_touch_nest": {
+        "done": false,
+        "name": "Total Beelocation"
+    },
+    "minecraft:husbandry/tactical_fishing": {
+        "done": false,
+        "name": "Tactical Fishing"
+    },
+    "minecraft:husbandry/tame_an_animal": {
+        "done": false,
+        "name": "Best Friends Forever"
+    },
+    "minecraft:nether/all_effects": {
+        "done": false,
+        "name": "How Did We Get Here?"
+    },
+    "minecraft:nether/all_potions": {
+        "done": false,
+        "name": "A Furious Cocktail"
+    },
+    "minecraft:nether/brew_potion": {
+        "done": false,
+        "name": "Local Brewery"
+    },
+    "minecraft:nether/charge_respawn_anchor": {
+        "done": false,
+        "name": "Not Quite Nine Lives"
+    },
+    "minecraft:nether/create_beacon": {
+        "done": false,
+        "name": "Bring Home the Beacon"
+    },
+    "minecraft:nether/create_full_beacon": {
+        "done": false,
+        "name": "Beaconator"
+    },
+    "minecraft:nether/distract_piglin": {
+        "done": false,
+        "name": "Oh Shiny"
+    },
+    "minecraft:nether/explore_nether": {
+        "done": false,
+        "name": "Hot Tourist Destinations"
+    },
+    "minecraft:nether/fast_travel": {
+        "done": false,
+        "name": "Subspace Bubble"
+    },
+    "minecraft:nether/find_bastion": {
+        "done": false,
+        "name": "Those Were the Days"
+    },
+    "minecraft:nether/find_fortress": {
+        "done": false,
+        "name": "A Terrible Fortress"
+    },
+    "minecraft:nether/get_wither_skull": {
+        "done": false,
+        "name": "Spooky Scary Skeleton"
+    },
+    "minecraft:nether/loot_bastion": {
+        "done": false,
+        "name": "War Pigs"
+    },
+    "minecraft:nether/netherite_armor": {
+        "done": false,
+        "name": "Cover Me in Debris"
+    },
+    "minecraft:nether/obtain_ancient_debris": {
+        "done": false,
+        "name": "Hidden in the Depths"
+    },
+    "minecraft:nether/obtain_blaze_rod": {
+        "done": false,
+        "name": "Into Fire"
+    },
+    "minecraft:nether/obtain_crying_obsidian": {
+        "done": false,
+        "name": "Who is Cutting Onions?"
+    },
+    "minecraft:nether/return_to_sender": {
+        "done": false,
+        "name": "Return to Sender"
+    },
+    "minecraft:nether/ride_strider": {
+        "done": false,
+        "name": "This Boat Has Legs"
+    },
+    "minecraft:nether/root": {
+        "done": false,
+        "name": "Nether"
+    },
+    "minecraft:nether/summon_wither": {
+        "done": false,
+        "name": "Withering Heights"
+    },
+    "minecraft:nether/uneasy_alliance": {
+        "done": false,
+        "name": "Uneasy Alliance"
+    },
+    "minecraft:nether/use_lodestone": {
+        "done": false,
+        "name": "Country Lode"
+    },
+    "minecraft:story/cure_zombie_villager": {
+        "done": false,
+        "name": "Zombie Doctor"
+    },
+    "minecraft:story/deflect_arrow": {
+        "done": false,
+        "name": "Not Today, Thank You"
+    },
+    "minecraft:story/enchant_item": {
+        "done": false,
+        "name": "Enchanter"
+    },
+    "minecraft:story/enter_the_end": {
+        "done": false,
+        "name": "The End?"
+    },
+    "minecraft:story/enter_the_nether": {
+        "done": false,
+        "name": "We Need to Go Deeper"
+    },
+    "minecraft:story/follow_ender_eye": {
+        "done": false,
+        "name": "Eye Spy"
+    },
+    "minecraft:story/form_obsidian": {
+        "done": false,
+        "name": "Ice Bucket Challenge"
+    },
+    "minecraft:story/iron_tools": {
+        "done": false,
+        "name": "Isn't It Iron Pick"
+    },
+    "minecraft:story/lava_bucket": {
+        "done": false,
+        "name": "Hot Stuff"
+    },
+    "minecraft:story/mine_diamond": {
+        "done": false,
+        "name": "Diamonds!"
+    },
+    "minecraft:story/mine_stone": {
+        "done": false,
+        "name": "Stone Age"
+    },
+    "minecraft:story/obtain_armor": {
+        "done": false,
+        "name": "Suit Up"
+    },
+    "minecraft:story/root": {
+        "done": false,
+        "name": "Minecraft"
+    },
+    "minecraft:story/shiny_gear": {
+        "done": false,
+        "name": "Cover Me With Diamonds"
+    },
+    "minecraft:story/smelt_iron": {
+        "done": false,
+        "name": "Acquire Hardware"
+    },
+    "minecraft:story/upgrade_tools": {
+        "done": false,
+        "name": "Getting an Upgrade"
+    }
+}
