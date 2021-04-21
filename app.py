@@ -14,7 +14,8 @@ import tkinter as tk
 class Application(tk.Frame):
 	def __init__(self, master=None):
 		super().__init__(master)
-		self.settings = json.loads(open("settings.json", "r").read())
+		
+		self.settings = json.loads(open(os.path.join(sys._MEIPASS,"settings.json"), "r").read())
 		self.mcpath = self.settings['mcpath']
 		print(self.mcpath)
 		self.client_id = self.settings['client_id']
@@ -45,7 +46,7 @@ class Application(tk.Frame):
 		self.p3.pack()
 		self.create_settings()
 		self.create_buttons()
-		csvfile = open("data.csv","r")
+		csvfile = open(os.path.join(sys._MEIPASS,"data.csv"),"r")
 		reader = csv.reader(csvfile)
 		self.translator = {}
 		self.names = []
@@ -95,6 +96,7 @@ class Application(tk.Frame):
 		self.b4.grid(row=4, column=3)
 
 	def submit_settings(self):
+			
 		self.client_id = self.e1.get()
 		self.client_secret =self.e2.get()
 		self.code = self.e3.get()
@@ -105,7 +107,7 @@ class Application(tk.Frame):
 			'code': self.code,
 			'mcpath': self.mcpath,
 			})
-		with open("settings.json", "w") as settings_file:
+		with open(os.path.join(sys._MEIPASS,"settings.json"), "w") as settings_file:
 			settings_file.write(str(json.dumps(self.settings,indent=4,sort_keys=True)))
 
 	def create_buttons(self):
@@ -139,6 +141,10 @@ class Application(tk.Frame):
 			self.refresh_token_label = tk.Label(self.frame, text="refresh_token: " + r.json()['refresh_token'])
 			self.access_token_label.pack()
 			self.refresh_token_label.pack()
+			self.token = r.json()['access_token']
+			self.settings.update({'token': self.token})
+			with open(os.path.join(sys._MEIPASS,"settings.json"), "w") as settings_file:
+				settings_file.write(str(json.dumps(self.settings,indent=4,sort_keys=True)))
 
 	def set_all_commands(self):
 		commands = self.names
@@ -170,6 +176,7 @@ class Application(tk.Frame):
 			r = requests.delete(url, data=args, headers=headers)
 		elif method == "PUT":
 			r = requests.put(url, data=args, headers=headers)
+		print(r.text)
 		return r.json()
 
 	def get_all_commands(self):
@@ -229,7 +236,7 @@ class Application(tk.Frame):
 
 	def make_backup(self):
 		cmds = self.get_raw_commands()
-		with open("backups/" + datetime.datetime.now().strftime("%s") + ".json", "x") as backup_file:
+		with open(os.path.join(sys._MEIPASS, datetime.datetime.now().strftime("%S") + ".json"), "x") as backup_file:
 			backup_file.write(str(json.dumps(cmds,indent=4,sort_keys=True)))
 
 	def get_latest_world(self):
@@ -237,20 +244,20 @@ class Application(tk.Frame):
 		for world in worlds:
 			if world[0] == ".":
 				worlds.remove(world)
-		times = {os.path.getctime("/".join([self.mcpath,world])): world for world in worlds}
+		times = {os.path.getctime(os.path.join([self.mcpath,world])): world for world in worlds}
 		latest_file = times[max(times)]
 		return latest_file
 
 	def get_advancement_file(self):
 		latest_file = self.get_latest_world()
-		world_path = "/".join((self.mcpath,latest_file))
-		advancement_path = "/".join((world_path, "advancements"))
+		world_path = os.path.join((self.mcpath,latest_file))
+		advancement_path = os.path.join((world_path, "advancements"))
 		if "advancements" in os.listdir(world_path):
 			advancement_file = os.listdir(advancement_path)[0]
 		else:
 			return None
-		advancement_file_path = advancement_path + "/" + advancement_file
-		return open(advancement_file_path,"r").read()
+		advancement_file_path = os.path.join(advancement_path, advancement_file)
+		return open(os.path.join(advancement_file_path),"r").read()
 
 	def get_advancements(self):
 		advancements = self.get_advancement_file()
@@ -291,4 +298,3 @@ class Application(tk.Frame):
 root = tk.Tk()
 app = Application(master=root)
 app.mainloop()
-
