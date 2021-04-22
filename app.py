@@ -274,8 +274,12 @@ class Application(tk.Frame):
 
 	def set_all_commands(self):
 		commands = self.names
+		args = {
+		'coolDown': 5,
+		'userLevel': 'everyone',
+		}
 		for command in commands:
-			if (command.replace(" ", "") not in self.all_commands) and (self.translator[self.get_path(command)]['include']):
+			if (command not in self.all_commands) and (self.translator[self.get_path(command)]['include']):
 				args = {
 				"coolDown": 5,
 				"message": command + " has not yet been completed.",
@@ -284,16 +288,17 @@ class Application(tk.Frame):
 				}
 				self.update_log(command.replace(" ", "") + " added ")
 				self.send_request("https://api.nightbot.tv/1/commands", args=args)
-		args.update({
-			'message': "No advancements have been completed",
-			'name': "!completed"})
-		self.update_log("!completed added ")
-		self.send_request("https://api.nightbot.tv/1/commands", args=args)
-		args.update({
-			'message': "No advancements have been completed",
-			'name': "!left"})
-		self.update_log("!left added ")
-		self.send_request("https://api.nightbot.tv/1/commands", args=args)
+		if "!completed" not in self.all_commands or "!left" not in self.all_commands:
+			args.update({
+				'message': "No advancements have been completed",
+				'name': "!completed"})
+			self.update_log("!completed added ")
+			self.send_request("https://api.nightbot.tv/1/commands", args=args)
+			args.update({
+				'message': "No advancements have been completed",
+				'name': "!left"})
+			self.update_log("!left added ")
+			self.send_request("https://api.nightbot.tv/1/commands", args=args)
 
 	def send_request(self, url, args=None, method="POST"):
 		headers = {"Authorization": "Bearer " + self.token}
@@ -344,6 +349,7 @@ class Application(tk.Frame):
 			args = {
 			'message': message,
 			}
+			print(json.dumps(self.all_commands,indent=4,sort_keys=True))
 			if message != self.all_commands[advancement_info['name']]['message']:
 				self.update_log("updating " + advancement_info['name'])
 				self.send_request("https://api.nightbot.tv/1/commands/" + self.all_commands[advancement_info['name']]['_id'],method="PUT", args=args)
@@ -416,23 +422,26 @@ class Application(tk.Frame):
 			return None, None
 		different_advancements = {}
 		for path, new_advancement in the_new_advancements.items():
-			if path not in current_advancements:
+			if path not in current_advancements and self.translator[path]['include']:
 				different_advancements.update({path: new_advancement})
 			elif current_advancements[path] != new_advancement:
 				different_advancements.update({path: new_advancement})
 		return different_advancements, the_new_advancements
 	def main(self):
-		current_advancements = self.get_advancements()
-		self.update_commands(current_advancements, current_advancements)
+		self.current_advancements = self.get_advancements()
+		self.update_commands(self.current_advancements, self.current_advancements)
 		self.set_all_commands()
 		self.running = True
-		while self.running:
-			time.sleep(1)
-			all_diff = self.get_different_advancements(current_advancements)
+		self.run_it()
+
+	def run_it(self):
+		if self.running:
+			all_diff = self.get_different_advancements(self.current_advancements)
 			diff = all_diff[0]
 			if diff:
-				current_advancements = all_diff[1]
-				self.update_commands(diff, current_advancements)
+				self.current_advancements = all_diff[1]
+				self.update_commands(diff, self.current_advancements)
+			self.master.after(100, self.run_it)
  
 root = tk.Tk()
 app = Application(master=root)
