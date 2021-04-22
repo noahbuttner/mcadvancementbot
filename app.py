@@ -25,11 +25,22 @@ class Application(tk.Frame):
 		self.refresh_token = self.settings['refresh_token']
 		self.bgrnd = "#263D42"
 		self.master = master
-		# self.title = "f"
-		# self.pack()
-		# self.master.title = "Minecraft Twitch Chat Tracker"
+		minecraft_directory = ""
+		if sys.platform == "linux" or sys.platform == "linux2":
+			# linux
+			minecraft_directory = os.path.expanduser("~") + "/.minecraft"
+		elif sys.platform == "darwin":
+			# OS X
+			minecraft_directory = os.path.expanduser("~") + "/Library/Application Support/minecraft"
+		elif sys.platform == "win32":
+			# Windows
+			minecraft_directory = os.getenv('APPDATA') + "\\.minecraft"
+		self.mcpath = minecraft_directory
+		self.settings['mcpath'] = self.mcpath
+		with open("settings.json", "w") as settings_file:
+			settings_file.write(str(json.dumps(self.settings,indent=4,sort_keys=True)))
 		self.pack()
-		self.canvas = tk.Canvas(self, height=1500, width=1000, bg=self.bgrnd)
+		self.canvas = tk.Canvas(self, height=650, width=700, bg=self.bgrnd)
 		self.canvas.pack()
 		self.frame = tk.Frame(self, bg="white")
 		self.frame.place(relwidth=1, relheight=1)
