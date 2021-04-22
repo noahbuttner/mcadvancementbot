@@ -1,18 +1,32 @@
-# mcadvancementbot
-Put your mcpath in settings.txt
+# First Time Setup Instructions
 
-Create a nightbot project, and copy the client_id and client_secert into settings.txt
+Download the latest release, and open app.exe
 
-Go to 
+Create a [nightbot project](https://nightbot.tv/account/applications), and include https://127.0.0.1 as a redirect uri
 
-https://nightbot.tv/oauth2/authorize?client_id=YOUR_CLIENT_ID&response_type=code&scope=commands&redirect_uri=https:%2F%2F127.0.0.1
+Paste in your client_id and client_secert
 
-and authorize the bot to use your account
+Click on the third line, where you will be redirected to authorize your nightbot app
 
-it should redirect you to a website, copy the code in the url, and paste that into settings.txt
+Once you click authorize, you will be redirected to https://127.0.0.1 Copy the code in the url that follows "code=". Paste that into access code, and press submit.
 
-run python app.py get_token
+Press get token.
 
-copy paste the access token and refresh token into settings.txt
+If you want to take a backup of your current nightbot commands, press Take Backup.
 
-run python app.py main
+You can configure which commands you wish to add to your chat by pressing the Settings button below, which will open a new window with all of the advancements in 1.16
+
+Press Update Commands
+
+Press add all commmands, which will take about a minute to add all of the new commands. The application will be working even if it says it is not responding.
+
+Press Start to automatically update commands in your chat.
+
+# Features
+
+Individual Commands for each advancement, which tells if the advancement has been completed
+
+By default all 80 advancement commands are added, however you can configured only specific advancements to show.
+
+Overall Commands (!completed and !left) which gives the advancements that have been completed, or still remaining
+

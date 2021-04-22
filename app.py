@@ -23,7 +23,6 @@ class Application(tk.Frame):
 		self.code = self.settings['code']
 		self.token = self.settings['token']
 		self.refresh_token = self.settings['refresh_token']
-		self.bgrnd = "#263D42"
 		self.master = master
 		minecraft_directory = ""
 		if sys.platform == "linux" or sys.platform == "linux2":
@@ -35,14 +34,14 @@ class Application(tk.Frame):
 		elif sys.platform == "win32":
 			# Windows
 			minecraft_directory = os.getenv('APPDATA') + "\\.minecraft"
-		self.mcpath = minecraft_directory
+		self.mcpath = os.path.join(minecraft_directory, "saves")
 		self.settings['mcpath'] = self.mcpath
 		with open("settings.json", "w") as settings_file:
 			settings_file.write(str(json.dumps(self.settings,indent=4,sort_keys=True)))
 		self.pack()
-		self.canvas = tk.Canvas(self, height=650, width=700, bg=self.bgrnd)
+		self.canvas = tk.Canvas(self, height=650, width=700)
 		self.canvas.pack()
-		self.frame = tk.Frame(self, bg="white")
+		self.frame = tk.Frame(self)
 		self.frame.place(relwidth=1, relheight=1)
 		fontStyle = tkFont.Font(family="Lucida Grande", size=20)
 		underlinefont = tkFont.Font(family="Lucida Grande", underline = True)
@@ -166,6 +165,7 @@ class Application(tk.Frame):
 		with open("data.json", "w") as data_file:
 			data_file.write(str(json.dumps(self.translator,indent=4,sort_keys=True)))
 		self.get_all_commands()
+		self.newWindow.destroy()
 
 	def link_it(self, url):
 		webbrowser.open_new(url)
