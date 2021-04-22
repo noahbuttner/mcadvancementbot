@@ -25,7 +25,9 @@ class Application(tk.Frame):
 		self.refresh_token = self.settings['refresh_token']
 		self.bgrnd = "#263D42"
 		self.master = master
-		self.master.title = "Minecraft Twitch Chat Tracker"
+		# self.title = "f"
+		# self.pack()
+		# self.master.title = "Minecraft Twitch Chat Tracker"
 		self.pack()
 		self.canvas = tk.Canvas(self, height=1500, width=1000, bg=self.bgrnd)
 		self.canvas.pack()
@@ -33,8 +35,6 @@ class Application(tk.Frame):
 		self.frame.place(relwidth=1, relheight=1)
 		fontStyle = tkFont.Font(family="Lucida Grande", size=20)
 		underlinefont = tkFont.Font(family="Lucida Grande", underline = True)
-		self.checkbox_frame = tk.Frame(self.frame,height=500,width=700)
-		self.checkbox_frame.pack(side=tk.BOTTOM)
 		self.settings_frame = tk.Frame(self.frame)
 		self.settings_frame.pack(side=tk.BOTTOM)
 		self.instuctions = tk.Label(self.frame, text="First Time Setup Instructions", font=fontStyle)
@@ -87,6 +87,16 @@ class Application(tk.Frame):
 			print(self.names)
 		self.replaced_commands = {command.replace(" ", "").lower(): command for command in self.names}
 		self.all_commands = self.get_all_commands()
+ 
+	def open_new_win(self):
+		self.newWindow = tk.Toplevel(self.master)
+		self.newWindow.title("Settings")
+		self.update_checks = tk.Button(self.newWindow,
+			text="Update Commands",
+			padx=10, pady=5, fg="blue", command=self.update_checkboxes)
+		self.update_checks.pack(side=tk.BOTTOM)
+		self.checkbox_frame = tk.Frame(self.newWindow,height=500,width=700)
+		self.checkbox_frame.pack(side=tk.BOTTOM)
 		self.checkboxes = {}
 		self.checkbox_vars = {}
 		with open("tree.json", "r") as tree_file:
@@ -196,12 +206,12 @@ class Application(tk.Frame):
 			})
 		with open("settings.json", "w") as settings_file:
 			settings_file.write(str(json.dumps(self.settings,indent=4,sort_keys=True)))
- 
+
 	def create_buttons(self):
-		self.update_checks = tk.Button(self.frame,
-			text="Update Commands",
-			padx=10, pady=5, fg="blue", command=self.update_checkboxes)
-		self.update_checks.pack(side=tk.BOTTOM)
+		self.update_setttings = tk.Button(self.frame,
+			text="Settings",
+			padx=10, pady=5, fg="blue", command=self.open_new_win)
+		self.update_setttings.pack(side=tk.BOTTOM)
 		self.delete_button = tk.Button(self.frame,
 			text="Delete Commands",
 			padx=10, pady=5, fg="blue", command=self.delete_all_commands)
