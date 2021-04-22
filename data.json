@@ -1,52 +1,52 @@
 {
     "minecraft:adventure/adventuring_time": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Adventuring Time"
     },
     "minecraft:adventure/arbalistic": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Arbalistic"
     },
     "minecraft:adventure/bullseye": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Bullseye"
     },
     "minecraft:adventure/hero_of_the_village": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Hero of the Village"
     },
     "minecraft:adventure/honey_block_slide": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Sticky Situation"
     },
     "minecraft:adventure/kill_a_mob": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Monster Hunter"
     },
     "minecraft:adventure/kill_all_mobs": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Monsters Hunted"
     },
     "minecraft:adventure/ol_betsy": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Ol' Betsy"
     },
     "minecraft:adventure/root": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Adventure"
     },
     "minecraft:adventure/shoot_arrow": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Take Aim"
     },
     "minecraft:adventure/sleep_in_bed": {
@@ -56,347 +56,347 @@
     },
     "minecraft:adventure/sniper_duel": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Sniper Duel"
     },
     "minecraft:adventure/summon_iron_golem": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Hired Help"
     },
     "minecraft:adventure/throw_trident": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "A Throwaway Joke"
     },
     "minecraft:adventure/totem_of_undying": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Postmortal"
     },
     "minecraft:adventure/trade": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "What a Deal!"
     },
     "minecraft:adventure/two_birds_one_arrow": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Two Birds"
     },
     "minecraft:adventure/very_very_frightening": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Very Very Frightening"
     },
     "minecraft:adventure/voluntary_exile": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Voluntary Exile"
     },
     "minecraft:adventure/whos_the_pillager_now": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Who's the Pillager Now?"
     },
     "minecraft:end/dragon_breath": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "You Need a Mint"
     },
     "minecraft:end/dragon_egg": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "The Next Generation"
     },
     "minecraft:end/elytra": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Sky's the Limit"
     },
     "minecraft:end/enter_end_gateway": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Remote Getaway"
     },
     "minecraft:end/find_end_city": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "City at the End of the Game"
     },
     "minecraft:end/kill_dragon": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Free the End"
     },
     "minecraft:end/levitate": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Great View From Up Here"
     },
     "minecraft:end/respawn_dragon": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "The End... Again..."
     },
     "minecraft:end/root": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "The End"
     },
     "minecraft:husbandry/balanced_diet": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "A Balanced Diet"
     },
     "minecraft:husbandry/bred_all_animals": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Two by Two"
     },
     "minecraft:husbandry/breed_an_animal": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "The Parrots and the Bats"
     },
     "minecraft:husbandry/complete_catalogue": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "A Complete Catalogue"
     },
     "minecraft:husbandry/fishy_business": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Fishy Business"
     },
     "minecraft:husbandry/obtain_netherite_hoe": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Serious Dedication"
     },
     "minecraft:husbandry/plant_seed": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "A Seedy Place"
     },
     "minecraft:husbandry/root": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Husbandry"
     },
     "minecraft:husbandry/safely_harvest_honey": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Bee Our Guest"
     },
     "minecraft:husbandry/silk_touch_nest": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Total Beelocation"
     },
     "minecraft:husbandry/tactical_fishing": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Tactical Fishing"
     },
     "minecraft:husbandry/tame_an_animal": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Best Friends Forever"
     },
     "minecraft:nether/all_effects": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "How Did We Get Here?"
     },
     "minecraft:nether/all_potions": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "A Furious Cocktail"
     },
     "minecraft:nether/brew_potion": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Local Brewery"
     },
     "minecraft:nether/charge_respawn_anchor": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Not Quite Nine Lives"
     },
     "minecraft:nether/create_beacon": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Bring Home the Beacon"
     },
     "minecraft:nether/create_full_beacon": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Beaconator"
     },
     "minecraft:nether/distract_piglin": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Oh Shiny"
     },
     "minecraft:nether/explore_nether": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Hot Tourist Destinations"
     },
     "minecraft:nether/fast_travel": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Subspace Bubble"
     },
     "minecraft:nether/find_bastion": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Those Were the Days"
     },
     "minecraft:nether/find_fortress": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "A Terrible Fortress"
     },
     "minecraft:nether/get_wither_skull": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Spooky Scary Skeleton"
     },
     "minecraft:nether/loot_bastion": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "War Pigs"
     },
     "minecraft:nether/netherite_armor": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Cover Me in Debris"
     },
     "minecraft:nether/obtain_ancient_debris": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Hidden in the Depths"
     },
     "minecraft:nether/obtain_blaze_rod": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Into Fire"
     },
     "minecraft:nether/obtain_crying_obsidian": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Who is Cutting Onions?"
     },
     "minecraft:nether/return_to_sender": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Return to Sender"
     },
     "minecraft:nether/ride_strider": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "This Boat Has Legs"
     },
     "minecraft:nether/root": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Nether"
     },
     "minecraft:nether/summon_wither": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Withering Heights"
     },
     "minecraft:nether/uneasy_alliance": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Uneasy Alliance"
     },
     "minecraft:nether/use_lodestone": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Country Lode"
     },
     "minecraft:story/cure_zombie_villager": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Zombie Doctor"
     },
     "minecraft:story/deflect_arrow": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Not Today, Thank You"
     },
     "minecraft:story/enchant_item": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Enchanter"
     },
     "minecraft:story/enter_the_end": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "The End?"
     },
     "minecraft:story/enter_the_nether": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "We Need to Go Deeper"
     },
     "minecraft:story/follow_ender_eye": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Eye Spy"
     },
     "minecraft:story/form_obsidian": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Ice Bucket Challenge"
     },
     "minecraft:story/iron_tools": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Isn't It Iron Pick"
     },
     "minecraft:story/lava_bucket": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Hot Stuff"
     },
     "minecraft:story/mine_diamond": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Diamonds!"
     },
     "minecraft:story/mine_stone": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Stone Age"
     },
     "minecraft:story/obtain_armor": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Suit Up"
     },
     "minecraft:story/root": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Minecraft"
     },
     "minecraft:story/shiny_gear": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Cover Me With Diamonds"
     },
     "minecraft:story/smelt_iron": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Acquire Hardware"
     },
     "minecraft:story/upgrade_tools": {
         "done": false,
-        "include": false,
+        "include": true,
         "name": "Getting an Upgrade"
     }
 }

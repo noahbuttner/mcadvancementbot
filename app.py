@@ -84,9 +84,9 @@ class Application(tk.Frame):
 			d = data_file.read()
 			self.translator = json.loads(d)
 			self.names = [y['name'] for x, y in json.loads(d).items()]
+			print(self.names)
 		self.replaced_commands = {command.replace(" ", "").lower(): command for command in self.names}
 		self.all_commands = self.get_all_commands()
-		print(json.dumps(self.all_commands,indent=4,sort_keys=True))
 		self.checkboxes = {}
 		self.checkbox_vars = {}
 		with open("tree.json", "r") as tree_file:
@@ -103,25 +103,53 @@ class Application(tk.Frame):
 				name = advancement_info['full_path']
 				self.checkbox_vars.update({name: tk.IntVar()})
 				self.checkboxes.update({name:None})
-				self.checkboxes[name] = tk.Checkbutton(self.checkbox_frame, text=advancement_info['name'],variable=self.checkbox_vars[name],command=self.update_checkboxes)
+				self.checkboxes[name] = tk.Checkbutton(self.checkbox_frame, text=advancement_info['name'],variable=self.checkbox_vars[name])
 				if self.translator[name]['include']:
 					self.checkboxes[name].select()
 				self.checkboxes[name].grid(column=x, row=y)
 
 	def update_checkboxes(self):
-		for name, checkbox_var in self.checkbox_vars.items():
+		for full_path, checkbox_var in self.checkbox_vars.items():
+			command = self.translator[full_path]['name']
+			lowered_command = command.replace(" ", "").lower()
 			if checkbox_var.get():
-				self.translator[name]['include'] = True
+				if self.translator[full_path]['done']:
+					full_message = command + " has been completed."
+				else:
+					full_message = command + " has not yet been completed."
+				if self.translator[full_path]['include'] != True:
+					self.translator[full_path]['include'] = True
+					if self.all_commands.get(command):
+						args = {
+						'message':full_message,
+						}
+						self.update_log("editing " + command)
+						self.send_request("https://api.nightbot.tv/1/commands/" + self.all_commands[command]['_id'],method="PUT", args=args)
+					else:
+						args = {
+							"coolDown": 5,
+							"message": full_message,
+							'name': lowered_command,
+							'userLevel': "everyone",
+						}
+						self.update_log("adding " + command)
+						self.send_request("https://api.nightbot.tv/1/commands", args=args)
 			else:
-				self.translator[name]['include'] = False
+				self.translator[full_path]['include'] = False
+				if self.all_commands.get(command):
+					self.update_log("deleting " + command)
+					self.send_request("https://api.nightbot.tv/1/commands/" + self.all_commands[command]['_id'], method="Delete")
+				else:
+					pass
+
 		with open("data.json", "w") as data_file:
 			data_file.write(str(json.dumps(self.translator,indent=4,sort_keys=True)))
+		self.get_all_commands()
 
 	def link_it(self, url):
 		webbrowser.open_new(url)
  
 	def submit_code_entry(self):
-		print(self.code_entry.get())
 		self.code = self.code_entry.get()
  
 	def create_settings(self):
@@ -170,15 +198,16 @@ class Application(tk.Frame):
 			settings_file.write(str(json.dumps(self.settings,indent=4,sort_keys=True)))
  
 	def create_buttons(self):
-		pass
+		self.update_checks = tk.Button(self.frame,
+			text="Update Commands",
+			padx=10, pady=5, fg="blue", command=self.update_checkboxes)
+		self.update_checks.pack(side=tk.BOTTOM)
 		self.delete_button = tk.Button(self.frame,
 			text="Delete Commands",
 			padx=10, pady=5, fg="blue", command=self.delete_all_commands)
 		self.delete_button.pack(side=tk.BOTTOM)
  
 	def get_token(self):
-		print(self.checkbox_vars)
-		print(self.checkboxes)
 		r = requests.post("https://api.nightbot.tv/oauth2/token", data={
 			"client_id": self.client_id,
 			"client_secret": self.client_secret,
@@ -201,9 +230,10 @@ class Application(tk.Frame):
 			self.settings.update({'token': self.token})
 			with open("settings.json", "w") as settings_file:
 				settings_file.write(str(json.dumps(self.settings,indent=4,sort_keys=True)))
-			get_all_commands()
+			self.get_all_commands()
 	
 	def update_log(self, add, newline=True):
+		print("add: " + add)
 		if len(self.log_area.cget("text").split("\n")) > 5:
 			if newline:
 				self.log_area.configure(text=self.log_area.cget("text")[self.log_area.cget("text")[1:].find("\n") + 1:] + "\n"+ add)
@@ -243,7 +273,7 @@ class Application(tk.Frame):
 			'name': "!left"})
 		self.update_log("!left added ")
 		self.send_request("https://api.nightbot.tv/1/commands", args=args)
- 
+
 	def send_request(self, url, args=None, method="POST"):
 		headers = {"Authorization": "Bearer " + self.token}
 		if method == "POST":
@@ -255,6 +285,8 @@ class Application(tk.Frame):
 		elif method == "PUT":
 			r = requests.put(url, data=args, headers=headers)
 		self.update_log(" " + str(r.status_code), newline=False)
+		with open("error.log", "a") as error_log:
+			error_log.write(str(datetime.datetime.now()) + ": " + r.text + "\n")
 		return r.json()
  
 	def get_all_commands(self):
