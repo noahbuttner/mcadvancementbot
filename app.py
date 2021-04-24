@@ -340,19 +340,35 @@ class Application(tk.Frame):
 			self.send_request("https://api.nightbot.tv/1/commands/" + command['_id'], method="Delete")
  
  
-	def individual_commands(self, different_advancements):
-		for path, advancement_info in different_advancements.items():
-			if advancement_info['done']:
-				message = advancement_info['name'] + " has been completed."
-			else:
-				message = advancement_info['name'] + " has not yet been completed."
-			args = {
-			'message': message,
-			}
-			print(json.dumps(self.all_commands,indent=4,sort_keys=True))
-			if message != self.all_commands[advancement_info['name']]['message']:
-				self.update_log("updating " + advancement_info['name'])
-				self.send_request("https://api.nightbot.tv/1/commands/" + self.all_commands[advancement_info['name']]['_id'],method="PUT", args=args)
+	def individual_commands(self, different_advancements,current_advancements=None):
+		if current_advancements:
+			for path, info in current_advancements.items():
+				if info['done']:
+					message = info['name'] + " has been completed."
+				else:
+					message = info['name'] + " has not yet been completed."
+				args = {
+				'message': message,
+				}
+				# print(json.dumps(self.all_commands,indent=4,sort_keys=True))
+				if message != self.all_commands[info['name']]['message']:
+					self.update_log("updating " + info['name'])
+					self.send_request("https://api.nightbot.tv/1/commands/" + self.all_commands[info['name']]['_id'],method="PUT", args=args)
+		else:
+			if different_advancements:
+				for path, advancement_info in different_advancements.items():
+					print("ayo0", advancement_info, path)
+					if advancement_info['done']:
+						message = advancement_info['name'] + " has been completed."
+					else:
+						message = advancement_info['name'] + " has not yet been completed."
+					args = {
+					'message': message,
+					}
+					# print(json.dumps(self.all_commands,indent=4,sort_keys=True))
+					if message != self.all_commands[advancement_info['name']]['message']:
+						self.update_log("updating " + advancement_info['name'])
+						self.send_request("https://api.nightbot.tv/1/commands/" + self.all_commands[advancement_info['name']]['_id'],method="PUT", args=args)
  
 	def overall_commands(self, current_advancements):
 		completed_advancements = []
@@ -376,7 +392,8 @@ class Application(tk.Frame):
 		self.send_request("https://api.nightbot.tv/1/commands/" + self.all_commands["!completed"]['_id'],method="PUT", args={'message': completed_message})
  
 	def update_commands(self, different_advancements, current_advancements):
-		self.individual_commands(different_advancements)
+		self.get_all_commands()
+		self.individual_commands(different_advancements, current_advancements=current_advancements)
 		self.overall_commands(current_advancements)
  
 	def make_backup(self):
@@ -418,6 +435,7 @@ class Application(tk.Frame):
 
 	def get_different_advancements(self, current_advancements):
 		the_new_advancements = self.get_advancements()
+		# print(the_new_advancements)
 		if not the_new_advancements:
 			return None, None
 		different_advancements = {}
@@ -426,6 +444,9 @@ class Application(tk.Frame):
 				different_advancements.update({path: new_advancement})
 			elif current_advancements[path] != new_advancement:
 				different_advancements.update({path: new_advancement})
+		if different_advancements:
+			print("different_advancements")
+			print(different_advancements)
 		return different_advancements, the_new_advancements
 	def main(self):
 		self.current_advancements = self.get_advancements()
@@ -435,10 +456,12 @@ class Application(tk.Frame):
 		self.run_it()
 
 	def run_it(self):
+		# print("a")
 		if self.running:
 			all_diff = self.get_different_advancements(self.current_advancements)
 			diff = all_diff[0]
 			if diff:
+				print("diff", diff)
 				self.current_advancements = all_diff[1]
 				self.update_commands(diff, self.current_advancements)
 			self.master.after(100, self.run_it)
