@@ -30,3 +30,6 @@ By default all 80 advancement commands are added, however you can configured onl
 
 Overall Commands (!completed and !left) which gives the advancements that have been completed, or still remaining
 
+# Questions
+
+If you have questions, dm on discord: dr pi#8747
